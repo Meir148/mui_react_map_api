@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.earth-container {
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  max-height: 1000px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+.planet-container {
+  border-radius: 50%;
+  box-shadow: 5px -3px 10px 3px #5e90f1;
+  width: 100%;
+  height: 100%;
+  max-width: 1000px;
+  max-height: 1000px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.night,
+.day,
+.clouds,
+.inner-shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: 1000px;
+  max-height: 1000px;
+  background-size: 200%;
+  border-radius: 50%;
+}
+
+.night {
+  animation: rotate-night 80s linear infinite;
+  background-image: url(https://www.solarsystemscope.com/textures/download/2k_earth_nightmap.jpg);
+  z-index: 2;
+}
+
+.day {
+  animation: rotate-day 80s linear infinite;
+  background-image: url(https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg);
+  border-left: solid 1px black;
+  box-shadow: 5px 0 20px 10px #040615 inset;
+  margin-left: 110px;
+  z-index: 3;
+}
+
+.clouds {
+  animation: 
+    rotate-day 50s linear infinite, 
+    spin-clouds 100s ease infinite;
+  background-image: url(https://www.solarsystemscope.com/textures/download/2k_earth_clouds.jpg);
+  box-shadow: 
+    5px 0 20px 10px #040615 inset, 
+    -9px 0px 20px 10px #5e90f1 inset;
+  margin-left: 100px;
+  opacity: 0.45;
+  z-index: 4;
+}
+
+.inner-shadow {
+  background: transparent;
+  box-shadow: 
+    -5px 0 10px 1px #152b57 inset, 
+    5px 0 10px 1px #040615 inset;
+  z-index: 5;
+}
+
+@keyframes rotate-day {
+  0% { background-position: 120% 0; }
+  100% { background-position: -80% 0; }
+}
+
+@keyframes rotate-night {
+  0% { background-position: calc(120% + 120px) 0; }
+  100% { background-position: calc(-80% + 120px) 0; }
+}
+
+@keyframes spin-clouds {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(20deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@media (max-width: 768px) {
+  .earth-container {
+    width: 300px;
+    height: 300px;
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .planet-container,
+  .night,
+  .day,
+  .clouds,
+  .inner-shadow {
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .day, .clouds {
+    margin-left: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  .earth-container {
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .planet-container,
+  .night,
+  .day,
+  .clouds,
+  .inner-shadow {
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .day, .clouds {
+    margin-left: 35px;
+  }
+}
